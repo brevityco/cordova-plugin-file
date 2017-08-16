@@ -753,8 +753,8 @@ module.exports = {
             return;
         }
 
-        if (path.length > 1 && path[path.length - 1] === "/") {
-          path = path.substring(0, path.length - 1);
+        if (path.length > 1 && path.slice(-1) === "/") {
+          path = path.slice(0, -1);
         }
 
         var fspath = sanitize(dirpath +'/'+ path);
