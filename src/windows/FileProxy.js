@@ -751,12 +751,17 @@ module.exports = {
         if (!fs || !validName(path)){
             fail(FileError.ENCODING_ERR);
             return;
-        }           
+        }
+
+        if (path.length > 1 && path[path.length - 1] === "/") {
+          path = path.substring(0, path.length - 1);
+        }
+
         var fspath = sanitize(dirpath +'/'+ path);
         var completePath = sanitize(fs.winpath + fspath);
 
         var name = completePath.substring(completePath.lastIndexOf('/')+1);
-        
+
         var wpath = cordovaPathToNative(completePath.substring(0, completePath.lastIndexOf('/')));
 
         var flag = "";
