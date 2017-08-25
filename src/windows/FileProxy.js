@@ -741,6 +741,18 @@ module.exports = {
         );
     },
 
+    getFreeDiskSpace: function (win, fail, args) {
+      Windows.Storage.ApplicationData.current.properties.retrievePropertiesAsync(['System.FreeSpace'])
+        .done(
+          function (object) {
+            win(object['System.FreeSpace']);
+          },
+          function (error) {
+            fail(error);
+          }
+        );
+    },
+
     getDirectory: function (win, fail, args) {
         var dirurl = args[0];
         var path = args[1];
