@@ -742,7 +742,7 @@ module.exports = {
     },
 
     getFreeDiskSpace: function (win, fail, args) {
-      Windows.Storage.ApplicationData.current.properties.retrievePropertiesAsync(['System.FreeSpace'])
+      Windows.Storage.ApplicationData.current.localFolder.properties.retrievePropertiesAsync(['System.FreeSpace'])
         .done(
           function (object) {
             win(object['System.FreeSpace']);
